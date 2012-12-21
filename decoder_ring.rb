@@ -12,6 +12,7 @@ import javax.swing.JTextArea
 import javax.swing.GroupLayout
 import javax.swing.JScrollPane
 import javax.swing.JOptionPane
+import javax.swing.JComboBox;
 
 class MessagePanel < JPanel
   
@@ -63,9 +64,56 @@ class DecoderPanel < JPanel
   
   def initialize
     super()
+    initUI
   end
   
   def initUI
+    
+    @jc1 = JComboBox.new
+    @jc1.addItem("Marshal")
+    @jc1.addItem("Base64")
+    @jc1.addItem("Rails Session Cookie")
+    
+    
+    @jt1 = JTextArea.new
+    @jt2 = JTextArea.new
+    @js1 = JScrollPane.new(@jt1)
+    @js2 = JScrollPane.new(@jt2)
+    
+    layout = GroupLayout.new self
+    self.setLayout layout
+    
+    layout.setAutoCreateGaps true
+    layout.setAutoCreateContainerGaps true
+    
+    sh1 = layout.createSequentialGroup
+    sv1 = layout.createSequentialGroup
+    sv2 = layout.createSequentialGroup
+    sv3 = layout.createSequentialGroup
+    sh2 = layout.createSequentialGroup
+    sh3 = layout.createSequentialGroup
+    p1 = layout.createParallelGroup
+    p2 = layout.createParallelGroup
+    
+    layout.setHorizontalGroup sh1
+    layout.setVerticalGroup sv1
+
+
+    p1.addComponent(@js1)
+    p1.addComponent(@jc1)
+    sv2.addGroup(p1)
+    sv3.addComponent(@js2)
+    sv1.addGroup(sv2)
+    sv1.addGroup(sv3)
+    
+    p2.addComponent(@js1)
+    p2.addComponent(@js2)
+    sh2.addGroup(p2)
+    sh3.addComponent(@jc1)
+    sh1.addGroup(sh2)
+    sh1.addGroup(sh3)
+    
+    
   end
   
 end
